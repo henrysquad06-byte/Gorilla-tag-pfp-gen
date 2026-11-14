@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#10131b">
+  <title>GTAG PFP Maker</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand-mark" aria-hidden="true">G</div>
+    <div><p class="eyebrow">FAN-MADE AVATAR STUDIO</p><h1>GTAG PFP Maker</h1></div>
+    <span class="local-tag">LOCAL • NO ACCOUNT</span>
+  </header>
+
+  <main class="workspace">
+    <section class="preview-panel panel">
+      <div class="panel-heading">
+        <div><p class="eyebrow">LIVE PREVIEW</p><h2>Your profile picture</h2></div>
+        <span class="resolution">1024 × 1024</span>
+      </div>
+      <div class="canvas-wrap">
+        <canvas id="pfpCanvas" width="1024" height="1024" aria-label="Your generated gorilla-style profile picture"></canvas>
+      </div>
+      <div class="preview-actions">
+        <button id="downloadBtn" class="primary-button">↓ <span>Download PFP (PNG)</span></button>
+        <button id="randomBtn" class="secondary-button" type="button">✦ Randomize</button>
+      </div>
+      <p class="hint">Your artwork is rendered in your browser. Nothing is uploaded.</p>
+    </section>
+
+    <section class="controls-panel">
+      <section class="panel">
+        <div class="panel-heading"><div><p class="eyebrow">01 / CHARACTER</p><h2>Pose & finish</h2></div></div>
+        <div class="control-grid">
+          <label>Head tilt <output id="tiltValue">0°</output><input id="headTilt" type="range" min="-30" max="30" value="0"></label>
+          <label>Character zoom <output id="zoomValue">100%</output><input id="zoom" type="range" min="70" max="125" value="100"></label>
+        </div>
+        <div class="inline-controls">
+          <label class="switch-row"><input id="showArms" type="checkbox" checked><span>Show arms / hands</span></label>
+          <label class="switch-row"><input id="outline" type="checkbox" checked><span>Bold outline</span></label>
+          <label class="switch-row"><input id="glow" type="checkbox"><span>Outer glow</span></label>
+        </div>
+      </section>
+
+      <section class="panel">
+        <div class="panel-heading"><div><p class="eyebrow">02 / FUR COLOR</p><h2>0–9 color code</h2></div><span class="color-chip" id="colorChip"></span></div>
+        <p class="small-copy">Each digit maps to an RGB channel with the Gorilla Tag-style 0–9 scale.</p>
+        <div class="code-row">
+          <label class="field-label" for="quickCode">3-digit code</label>
+          <div class="code-input-wrap"><input id="quickCode" inputmode="numeric" maxlength="3" value="369" aria-label="Three digit color code"><span>R G B</span></div>
+        </div>
+        <div class="rgb-grid">
+          <label>R <input id="red" type="number" min="0" max="9" step="1" value="3"></label>
+          <label>G <input id="green" type="number" min="0" max="9" step="1" value="6"></label>
+          <label>B <input id="blue" type="number" min="0" max="9" step="1" value="9"></label>
+        </div>
+        <div class="color-bottom">
+          <label class="switch-row"><input id="useHex" type="checkbox"><span>Use custom hex override</span></label>
+          <label class="picker-label">Color picker <input id="hexPicker" type="color" value="#55aaff"></label>
+        </div>
+        <div class="hex-readout"><span>Rendered color</span><strong id="hexValue">#55AAFF</strong></div>
+      </section>
+
+      <section class="panel">
+        <div class="panel-heading"><div><p class="eyebrow">03 / BACKDROP</p><h2>Background</h2></div></div>
+        <label class="field-label" for="backgroundSelect">Scene</label>
+        <select id="backgroundSelect">
+          <option value="forest">Forest Stump gradient</option>
+          <option value="caves">Caves crystal glow</option>
+          <option value="canyons">Canyons sunset</option>
+          <option value="city">City skyline</option>
+          <option value="clouds">Clouds sky</option>
+          <option value="neon">Neon ring</option>
+          <option value="solid">Solid custom color</option>
+          <option value="transparent">Transparent PNG</option>
+        </select>
+        <div class="picker-row" id="solidColorRow"><label class="picker-label">Solid background <input id="solidColor" type="color" value="#202d3d"></label></div>
+      </section>
+
+      <section class="panel cosmetics-panel">
+        <div class="panel-heading"><div><p class="eyebrow">04 / LOADOUT</p><h2>Cosmetics library</h2></div><span class="stack-tag">STACK ITEMS</span></div>
+        <p class="small-copy">Tap any item to equip it. You can combine several items in the same category.</p>
+        <div id="cosmeticGroups"></div>
+      </section>
+      <footer class="footer-note">Fan-made creative tool. Not affiliated with or endorsed by Another Axiom or Gorilla Tag.</footer>
+    </section>
+  </main>
+  <script src="cosmetics.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
